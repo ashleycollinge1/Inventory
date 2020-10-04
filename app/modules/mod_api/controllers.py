@@ -28,7 +28,7 @@ def get_devices():
             device_json['date_created'] = device.date_created
             device_json['date_modified'] = device.date_modified
             device_json['hostname'] = device.hostname
-            # ..TODO:: Need to use flask vars to create uri below, this is rubbish
+            # FIXME Need to use flask vars to create uri below, this is rubbish
             device_json['device_uri'] = 'http://127.0.0.1:5000/api/device/{}/'.format(device.id)
             devices_json.append(device_json)
     return jsonify(devices_json)
