@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, jsonify
 
 MOD_FRONT = Blueprint('front', __name__, url_prefix='/',
@@ -8,5 +9,7 @@ def test():
     """
     Test endpoint, just returns a success message
     """
-    return jsonify({"Return": "success"})
+    return jsonify({"Return": "success",
+        "message": "Everything is okay",
+        "os.environ": os.environ['POSTGRES_USER']})
 
