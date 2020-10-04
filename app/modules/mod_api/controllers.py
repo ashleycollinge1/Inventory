@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request
 from app import DB
 from app.modules.mod_api.models import Device
+from app.tasks import first_task
 
 MOD_API = Blueprint('api', __name__, url_prefix='/api/', static_folder='static/mod_api', static_url_path='static')
 
@@ -62,3 +63,6 @@ def new_device():
     except:
         return jsonify({'status': 'failed', 'message': 'Undetermined reason'}), 500
 
+@MOD_API.route('/task_test/', methods=['GET'])
+def task_test():
+    task = first_task.delay()

@@ -3,9 +3,13 @@ version: "3"
 services:
           rabbit:
                   hostname: rabbit
-                  image: rabbitmq:latest
+                  image: rabbitmq:management
+                  environment:
+                        - RABBITMQ_DEFAULT_USER=user
+                        - RABBITMQ_DEFAULT_PASS=user
                   ports:
                         - "5672:5672"
+                        - "15672:15672"
                   volumes:
                         - .:/app
           web:
