@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:3.6
 
 MAINTAINER Ashley Collinge "me@ashleycollinge.co.uk"
 
@@ -11,8 +11,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip3 install -r requirements.txt
+RUN pip3.6 install -r requirements.txt
 
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python3.6" ]
 
 CMD [ "run.py" ]

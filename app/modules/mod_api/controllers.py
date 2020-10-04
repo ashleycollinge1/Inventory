@@ -66,3 +66,4 @@ def new_device():
 @MOD_API.route('/task_test/', methods=['GET'])
 def task_test():
     task = first_task.delay()
+    return task.id

@@ -1,6 +1,17 @@
 version: "3"
 
 services:
+          worker:
+                  build:
+                          context: .
+                  hostname: worker
+                  entrypoint: celery
+                  command: worker
+                  depends_on:
+                        - rabbit
+                  env_file:
+                        - env_file
+                  restart: on-failure
           rabbit:
                   hostname: rabbit
                   image: rabbitmq:management
