@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import click, requests
+
+@click.command()
+def get_devices():
+    """
+    Get list of devices from API and print to screen
+    """
+    r = requests.get('http://127.0.0.1:5000/api/device/')
+    print("Test")
+    if r.status_code == 200:
+        if r.json():
+            print(r.json())
+    else:
+        print("error, status code: {}".format(r.status_code))
+
+if __name__ == "__main__":
+    get_devices()
