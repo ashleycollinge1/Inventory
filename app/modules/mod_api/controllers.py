@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 from app import DB
 from app.modules.mod_api.models import Devices
 
@@ -30,4 +30,18 @@ def get_devices():
             devices_json.append(device_json)
     return jsonify(devices_json)
 
+@MOD_API.route('/device/', methods=['POST'])
+def new_device():
+    """
+    POST request to add a new device
+    """
+    json_data = request.get_json(force=True)
+    new_device = Devices()
+    new_device.name = "Test-Name"
+    DB.session.add(new_device)
+    try:
+        DB.session.commit()
+        return jsonify({'status': 'success', 'device_id': new_device.id})
+    except:
+        return jsonify({'status': 'failed', 'message': 'Undetermined reason'}), 500
 
