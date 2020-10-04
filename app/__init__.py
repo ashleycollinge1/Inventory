@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 APPLICATION = Flask(__name__)
 APPLICATION.config.from_object('config')
 DB = SQLAlchemy(APPLICATION)
-from app.modules.mod_api.models import Devices
+from app.modules.mod_api.models import Device
 
 from app.modules.mod_front.controllers import MOD_FRONT
 from app.modules.mod_api.controllers import MOD_API

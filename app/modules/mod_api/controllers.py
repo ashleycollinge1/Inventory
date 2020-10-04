@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request
 from app import DB
-from app.modules.mod_api.models import Devices
+from app.modules.mod_api.models import Device
 
 MOD_API = Blueprint('api', __name__, url_prefix='/api/', static_folder='static/mod_api', static_url_path='static')
 
@@ -18,7 +18,7 @@ def get_devices():
     """
     Returns a list of all devices formatted in JSON
     """
-    devices = DB.session.query(Devices).all()
+    devices = DB.session.query(Device).all()
     devices_json = []
     if devices:
         for device in devices:
@@ -27,6 +27,7 @@ def get_devices():
             device_json['name'] = device.name
             device_json['date_created'] = device.date_created
             device_json['date_modified'] = device.date_modified
+            device_json['hostname'] = device.hostname
             devices_json.append(device_json)
     return jsonify(devices_json)
 
@@ -36,8 +37,9 @@ def new_device():
     POST request to add a new device
     """
     json_data = request.get_json(force=True)
-    new_device = Devices()
+    new_device = Device()
     new_device.name = "Test-Name"
+    new_device.hostname = "test-hostname"
     DB.session.add(new_device)
     try:
         DB.session.commit()
