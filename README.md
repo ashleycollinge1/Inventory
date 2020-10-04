@@ -8,7 +8,7 @@ I prefer to run it in a docker container where possible:
 
 ```bash
 docker build -t inventory:latest .
-docker run -d -p 5000:5000 inventory
+docker run --env-file=env_file -d -p 5000:5000 inventory
 ```
 
 ## Contributing
