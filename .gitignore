@@ -6,6 +6,9 @@
 env_file
 env_file_dev
 
+# Swap files
+*.swp
+
 ### Flask ###
 instance/*
 !instance/.gitignore
