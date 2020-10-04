@@ -31,6 +31,19 @@ def get_devices():
             devices_json.append(device_json)
     return jsonify(devices_json)
 
+@MOD_API.route('/device/<device_id>/', methods=['GET'])
+def get_device(device_id):
+    """
+    Retrieve specific device, returns all attrs of obj
+    """
+    query_results = DB.session.query(Device).filter_by(id=device_id).one()
+    print(query_results.__dict__)
+    properties = {}
+    for i in query_results.__dict__:
+        if i != '_sa_instance_state': # exclude sqlalchemy state
+            properties[i] = query_results.__dict__[i]
+    return jsonify(properties)
+
 @MOD_API.route('/device/', methods=['POST'])
 def new_device():
     """
