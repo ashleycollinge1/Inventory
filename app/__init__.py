@@ -7,7 +7,7 @@ DB = SQLAlchemy(APPLICATION)
 from app.modules.mod_api.models import Devices
 
 from app.modules.mod_front.controllers import MOD_FRONT
-from app.modules.mod_api.controllers. import MOD_API
+from app.modules.mod_api.controllers import MOD_API
 
 APPLICATION.register_blueprint(MOD_FRONT)
 APPLICATION.register_blueprint(MOD_API)
