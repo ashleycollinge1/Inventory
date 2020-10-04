@@ -4,12 +4,10 @@ from flask import Blueprint, render_template, jsonify
 MOD_FRONT = Blueprint('front', __name__, url_prefix='/',
                               static_folder='static/mod_agent', static_url_path='static')
 
-@MOD_FRONT.route("/test/", methods=["GET"])
-def test():
+@MOD_FRONT.route("/", methods=["GET"])
+def index():
     """
-    Test endpoint, just returns a success message
+    Main dashboard
     """
-    return jsonify({"Return": "success",
-        "message": "Everything is okay",
-        "os.environ": os.environ['POSTGRES_USER']})
+    return render_template('index.html')
 
