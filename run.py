@@ -1,7 +1,7 @@
-from app import APPLICATION
+from app import app
 from app import DB
 
 DB.create_all()
-APPLICATION.run(host='0.0.0.0')
+app.run(host='0.0.0.0')
 
 
